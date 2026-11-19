@@ -1,7 +1,8 @@
-#ifndef MAINWINDOW_HPP
-#define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QWidget>
+#include <QIcon>
 
 class MainWindow : public QMainWindow
 {
@@ -11,4 +12,3 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 };
-#endif // MAINWINDOW_HPP
