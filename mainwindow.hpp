@@ -7,7 +7,9 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QList>
-#include <algorithm>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QHBoxLayout>
 
 
 class MainWindow : public QMainWindow
@@ -16,5 +18,17 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+
+    void initMenu();
+    void initCentralWidget();
+    void initProjectBar();
+    void initEditor();
+
     ~MainWindow();
+private:
+    QWidget *centralWidget;
+    QWidget *projectWidget;
+    QWidget *editorWidget;
+
+    QHBoxLayout *mainLayout;
 };
