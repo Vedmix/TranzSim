@@ -18,19 +18,44 @@ MainWindow::MainWindow(QWidget* parent): QMainWindow(parent)
 void MainWindow::initMenu(){
 
     QMenuBar *bar = menuBar();
-    QAction *quit = new QAction("Quit", this);
-    connect(quit, &QAction::triggered, qApp, QApplication::quit);
+    QMenu *fileMenu = nullptr;
+    QMenu *editMenu = nullptr;
+    QMenu *optionsMenu = nullptr;
 
-    QList<QString> menuNames = {"File","Edit", "View", "Options"};
+    QList<QString> menuNames = {"File","Edit","Options"};
+    QList<QString> fileActionNames = {"New file", "New project", "Open file", "Open project", "Save", "Close file", "Close project", "Quit"};
+    QList<QString> editActionNames = {"Redo", "Undo"};
+    QList<QString> optionsActionNames = {"General", "Style"};
 
-    for (int i=0; i < menuNames.size(); ++i){
-        QMenu *menuObject = bar->addMenu(menuNames[i]);
-        switch(i){
-        case(0):
-            menuObject->addAction(quit);
-
-            break;
+    for (const QString &name : menuNames){
+        QMenu *menu = bar->addMenu(name);
+        if (name == "File"){
+            fileMenu = menu;
+        } else if (name == "Edit"){
+            editMenu = menu;
+        } else if (name == "Options"){
+            optionsMenu = menu;
         }
+    }
+
+    for (const QString &name : fileActionNames){
+        QAction *action = new QAction(name, this);
+        if (name == "Quit"){
+            connect(action, &QAction::triggered, qApp, &QApplication::quit);
+        }
+        fileMenu->addAction(action);
+    }
+
+    for (const QString &name : editActionNames){
+        QAction *action = new QAction(name, this);
+
+        editMenu->addAction(action);
+    }
+
+    for (const QString &name : optionsActionNames){
+        QAction *action = new QAction(name, this);
+
+        optionsMenu->addAction(action);
     }
 }
 
