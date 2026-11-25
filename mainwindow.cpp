@@ -4,7 +4,7 @@ MainWindow::MainWindow(QWidget* parent): QMainWindow(parent)
 {
     setWindowTitle("TranzSim");
     resize(1920, 1080);
-    setWindowIcon(QIcon("icon.png"));
+    setWindowIcon(QIcon("pics/icon.png"));
     centralWidget = new QWidget(this);
 
     mainLayout = new QHBoxLayout(centralWidget);
@@ -40,7 +40,22 @@ void MainWindow::initMenu(){
 
     for (const QString &name : fileActionNames){
         QAction *action = new QAction(name, this);
-        if (name == "Quit"){
+        if ( name == "New file"){
+            action->setIcon(QIcon("pics/new.png"));
+        } else if (name == "New project"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_FileDialogNewFolder));
+        } else if (name == "Open file"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_FileDialogStart));
+        } else if (name == "Open project"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon));
+        } else if (name == "Save"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_DriveFDIcon));
+        } else if (name == "Close file"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton));
+        } else if (name == "Close project"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton));
+        } else if (name == "Quit"){
+            action->setIcon(QIcon("pics/quit.png"));
             connect(action, &QAction::triggered, qApp, &QApplication::quit);
         }
         fileMenu->addAction(action);
@@ -48,13 +63,21 @@ void MainWindow::initMenu(){
 
     for (const QString &name : editActionNames){
         QAction *action = new QAction(name, this);
-
+        if (name == "Redo"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowBack));
+        } else if (name == "Undo"){
+            action->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowForward));
+        }
         editMenu->addAction(action);
     }
 
     for (const QString &name : optionsActionNames){
         QAction *action = new QAction(name, this);
-
+        if (name == "General"){
+            action->setIcon(QIcon("pics/general.png"));
+        } else if (name == "Style"){
+            action->setIcon(QIcon("pics/style.png"));
+        }
         optionsMenu->addAction(action);
     }
 }

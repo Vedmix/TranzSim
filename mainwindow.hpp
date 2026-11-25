@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QStyle>
 
 
 class MainWindow : public QMainWindow
